@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#8000"
+    android:layout_margin="15dp"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/present_weather_tmp"
+        android:text="29℃"
+        android:textStyle="bold"
+        android:textSize="45sp"
+        android:gravity="right"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/present_weather_body_tmp"
+        android:text="25℃"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/grey"
+        android:gravity="right"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="晴"
+        android:gravity="right"
+        android:textSize="30sp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/present_weather_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
