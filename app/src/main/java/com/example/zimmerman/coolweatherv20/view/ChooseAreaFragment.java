@@ -2,10 +2,13 @@ package com.example.zimmerman.coolweatherv20.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ProviderInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +24,7 @@ import com.example.zimmerman.coolweatherv20.R;
 import com.example.zimmerman.coolweatherv20.db.City;
 import com.example.zimmerman.coolweatherv20.db.County;
 import com.example.zimmerman.coolweatherv20.db.Province;
+import com.example.zimmerman.coolweatherv20.gson.Weather;
 import com.example.zimmerman.coolweatherv20.util.HttpUtil;
 import com.example.zimmerman.coolweatherv20.util.Utility;
 import com.orhanobut.logger.Logger;
@@ -85,13 +89,26 @@ public class ChooseAreaFragment extends Fragment {
                     selectedCity = cityList.get(position);
                     queryCounty();
                 } else if (currentLevel == LEVEL_COUNTY){
-                    //跳转到天气显示界面
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
 
-                    startActivity(intent);
-                    getActivity().finish();
+                    if (getActivity() instanceof MainActivity) {
+                        //跳转到天气显示界面
+                        Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                        editor.putString("weather_id",weatherId);
+                        editor.apply();
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (getActivity() instanceof WeatherActivity) {
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                        editor.putString("weather_id",weatherId);
+                        editor.apply();
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawer(GravityCompat.START);
+                        activity.swipeRefreshLayout.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });

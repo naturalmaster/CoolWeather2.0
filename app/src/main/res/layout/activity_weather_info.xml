@@ -8,41 +8,67 @@
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
         android:layout_height="match_parent" />
-    <ScrollView
-        android:id="@+id/weather_scrollview"
-        android:scrollbars="none"
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layou"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/weather_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <RelativeLayout
+
+            <ScrollView
+                android:id="@+id/weather_scrollview"
+                android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="河源"
-                    android:id="@+id/weather_title_text"
-                    android:layout_centerInParent="true"
-                    android:textSize="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:text="22:51"
-                    android:gravity="center_vertical"
-                    android:textSize="20dp"
-                    android:id="@+id/weather_info_update_time"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
+                android:layout_height="match_parent">
 
-            <include layout="@layout/weather_activity_now"/>
-            <include layout="@layout/weather_daily_fore"/>
-            <include layout="@layout/weather_air"/>
-            <include layout="@layout/weather_suggestion_act" />
-        </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/weather_city_btn"
+                            android:background="@drawable/ic_home"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                        <TextView
+                            android:text="河源"
+                            android:id="@+id/weather_title_text"
+                            android:layout_centerInParent="true"
+                            android:textSize="25dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="22:51"
+                            android:gravity="center_vertical"
+                            android:textSize="20dp"
+                            android:id="@+id/weather_info_update_time"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
 
-    </ScrollView>
+                    <include layout="@layout/weather_activity_now"/>
+                    <include layout="@layout/weather_daily_fore"/>
+                    <include layout="@layout/weather_air"/>
+                    <include layout="@layout/weather_suggestion_act" />
+                </LinearLayout>
+
+            </ScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <fragment
+            android:id="@+id/weather_choose_area_activity"
+            android:layout_gravity="start"
+            android:name="com.example.zimmerman.coolweatherv20.view.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </android.support.v4.widget.DrawerLayout>
 </FrameLayout>
