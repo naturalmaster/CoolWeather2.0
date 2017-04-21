@@ -156,9 +156,7 @@ public class ChooseAreaFragment extends Fragment {
                 String responseText = response.body().string();
                 boolean result = false;
                 if ("province".equals(type)) {
-                    Logger.d("it is gonna send http");
                     result = Utility.handleProvinceResponse(responseText);
-                    Logger.d("result:"+result);
                 } else if ("city".equals(type)) {
                     result = Utility.handleCityResponse(responseText, selectedProvince.getProvinceCode());
                 } else if ("county".equals(type)) {

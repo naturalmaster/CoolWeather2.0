@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.orhanobut.logger.Logger;
+import com.pgyersdk.crash.PgyCrashManager;
 
 import org.litepal.LitePal;
 
@@ -28,8 +29,12 @@ public class MyApplication extends Application {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         editor.putInt("day",Calendar.getInstance().get(Calendar.DATE));
         editor.apply();
+        //LitePal初始化
         LitePal.initialize(this);
+        //Logger初始化
         Logger.init("asd").methodCount(3);
+        //蒲公英初始化
+        PgyCrashManager.register(this);
         context=this;
     }
 

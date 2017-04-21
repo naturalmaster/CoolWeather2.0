@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tinyBlack">
+    <ImageView
+        android:id="@+id/bing_pic_background"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+        <include layout="@layout/layout_weather_toolbar"/>
+
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/drawer_layou"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/weather_swipe_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ScrollView
+                    android:id="@+id/weather_scrollview"
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:fitsSystemWindows="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+
+                        <include layout="@layout/weather_activity_now"/>
+                        <include layout="@layout/weather_daily_fore"/>
+                        <include layout="@layout/weather_air"/>
+                        <include layout="@layout/weather_suggestion_act" />
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+
+            <fragment
+                android:id="@+id/weather_choose_area_activity"
+                android:layout_gravity="start"
+                android:name="com.example.zimmerman.coolweatherv20.view.ChooseAreaFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+        </android.support.v4.widget.DrawerLayout>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
